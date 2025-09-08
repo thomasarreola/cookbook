@@ -3,8 +3,8 @@ import { Tabs } from "expo-router";
 export default () => {
   return (
     <Tabs>
-      <Tabs.Screen name="recipes" />
-      <Tabs.Screen name="stock" />
+      <Tabs.Screen name="Recipes" />
+      <Tabs.Screen name="Stock" />
     </Tabs>
   );
 };
