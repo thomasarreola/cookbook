@@ -10,15 +10,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  scrollViewStock: {
-    flexGrow: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    flexShrink: 0,
-    alignItems: "center",
-  },
-
   recipeCard: {
     borderWidth: 5,
     borderColor: "black",
@@ -26,9 +17,34 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     width: "80%",
     aspectRatio: "4/1",
-    display: "flex",
-    alignItems: "center",
     margin: "3%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  recipeNameText: {
+    fontSize: 30,
+  },
+
+  recipeImageContainer: {
+    width: "20%",
+    aspectRatio: "1/1",
+    margin: "2%",
+  },
+
+  recipeImage: {
+    height: "100%",
+    width: "100%",
+  },
+
+  scrollViewStock: {
+    flexGrow: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    flexShrink: 0,
+    alignItems: "center",
   },
 
   stockCard: {
