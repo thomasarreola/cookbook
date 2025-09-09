@@ -6,7 +6,7 @@ import { styles } from "../styles";
 export default function Recipes() {
   return (
     <SafeAreaView style={styles.usableArea}>
-      <ScrollView contentContainerStyle={styles.scrollView}>
+      <ScrollView contentContainerStyle={styles.scrollViewRecipe}>
         <RecipeCard />
         <RecipeCard />
         <RecipeCard />
