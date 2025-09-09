@@ -58,4 +58,14 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: "3%",
   },
+
+  stockImageContainer: {
+    width: "80%",
+    aspectRatio: "1/1",
+  },
+
+  stockImage: {
+    height: "100%",
+    width: "100%",
+  },
 });

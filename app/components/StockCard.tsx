@@ -1,10 +1,14 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { styles } from "../styles";
+const stockImage = require("../../assets/images/foodP.png");
 
 export default function StockCard() {
   return (
     <View style={styles.stockCard}>
-      <Text>Hello x3</Text>
+      <View style={styles.stockImageContainer}>
+        <Image source={stockImage} style={styles.stockImage} />
+      </View>
+      <Text>Stock Item Name</Text>
     </View>
   );
 }

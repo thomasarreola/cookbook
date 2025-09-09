@@ -10,6 +10,14 @@ export default function stock() {
         <StockCard />
         <StockCard />
         <StockCard />
+        <StockCard />
+        <StockCard />
+        <StockCard />
+        <StockCard />
+        <StockCard />
+        <StockCard />
+        <StockCard />
+        <StockCard />
       </ScrollView>
     </SafeAreaView>
   );
