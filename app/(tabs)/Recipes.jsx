@@ -53,17 +53,25 @@ const RecipeCards = () => {
     }
   }
   const addRecipe = async (newRecipe) => {
-        try{
-            const statement = await db.prepareAsync(`INSERT INTO recipes (name, mastery) VALUES(?,?)`);
-            await statement.executeAsync([newRecipe.name, newRecipe.mastery]);
-            await getRecipes();
-        }catch(error){
-            console.log("Error while adding recipe", error);
-        }
+    try{
+        const statement = await db.prepareAsync(`INSERT INTO recipes (name, mastery) VALUES(?,?)`);
+        await statement.executeAsync([newRecipe.name, newRecipe.mastery]);
+        await getRecipes();
+    }catch(error){
+        console.log("Error while adding recipe", error);
+    }
+  }
+
+  const deleteAllRecipes = async () => {
+    try{
+      await db.runAsync(`DELETE FROM recipes`);
+    }catch(error){
+      console.log("Error deleting all recipes", error);
+    }
   }
   
   useEffect(() => {
-    addRecipe({name: 'Sandwich', mastery: 10});
+    addRecipe({name: "Sandwich", mastery: 10});
     getRecipes();
     }, []);
 
@@ -72,11 +80,10 @@ const RecipeCards = () => {
       {recipes.length === 0 ? (<Text>No Recipes</Text>) :
       (
         <FlatList
+          contentContainerStyle={styles.scrollViewRecipe}
           data={recipes}
           renderItem={({ item }) => (
-            <Text>
-              {item.id} - {item.name}
-            </Text>
+            <RecipeCard name={item.name}/>
           )}
           keyExtractor={(item) => item.id.toString()}
         ></FlatList>
