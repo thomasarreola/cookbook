@@ -5,6 +5,8 @@ import { styles } from "../styles";
 import * as SQLite from "expo-sqlite";
 import { useSQLiteContext, SQLiteProvider } from "expo-sqlite";
 import { useState, useEffect } from "react";
+import AddButton from "../components/AddButton";
+import { Link } from "expo-router";
 
 async function initRecipeDatabase(db) {
   try {
@@ -27,6 +29,11 @@ export default function Recipes() {
   return (
     <SQLiteProvider databaseName="kitchen.db" onInit={initRecipeDatabase}>
       <SafeAreaView style={styles.usableArea}>
+        <View style={{display: "flex", alignItems: "center",}}>
+          <Link href="/RecipePage" replace asChild>
+            <AddButton />
+          </Link>
+        </View>
         <RecipeCards />
       </SafeAreaView>
     </SQLiteProvider>

@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     borderColor: "black",
     borderStyle: "solid",
     borderRadius: 10,
-    width: "80%",
+    width: "90%",
     aspectRatio: "4/1",
     margin: "3%",
     display: "flex",
@@ -67,5 +67,26 @@ export const styles = StyleSheet.create({
   stockImage: {
     height: "100%",
     width: "100%",
+  },
+
+  addButton: {
+    borderColor: "black",
+    borderWidth: 5,
+    borderStyle: "solid",
+    backgroundColor: "black",
+    width: "90%",
+    aspectRatio: "4/1",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    top: "3%",
+  },
+
+  addButtonText: {
+    color: "white",
+    fontSize: 50,
+    fontWeight: "bold",
+    zIndex: 100,
   },
 });

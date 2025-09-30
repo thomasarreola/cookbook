@@ -1,8 +1,8 @@
-import { Tabs } from "expo-router";
+import { Tabs, Stack } from "expo-router";
 
 export default function TabLayout() {
   return (
-    <Tabs>
+    <Tabs screenOptions={{headerShown: false}}>
       <Tabs.Screen name="Recipes" />
       <Tabs.Screen name="Stock" />
     </Tabs>
