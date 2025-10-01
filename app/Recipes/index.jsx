@@ -30,9 +30,7 @@ export default function Recipes() {
     <SQLiteProvider databaseName="kitchen.db" onInit={initRecipeDatabase}>
       <SafeAreaView style={styles.usableArea}>
         <View style={{display: "flex", alignItems: "center",}}>
-          <Link href="/RecipePage" replace asChild>
             <AddButton />
-          </Link>
         </View>
         <RecipeCards />
       </SafeAreaView>

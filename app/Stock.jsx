@@ -1,6 +1,6 @@
 import { Text, View, SafeAreaView, ScrollView } from "react-native";
-import StockCard from "../components/StockCard";
-import { styles } from "../styles";
+import StockCard from "./components/StockCard";
+import { styles } from "./styles";
 import * as SQLite from "expo-sqlite";
 import { useEffect } from "react";
 
