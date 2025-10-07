@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ScrollView, SafeAreaView, FlatList } from "react-native";
+import { Text, View, SafeAreaView, FlatList } from "react-native";
 import RecipeCard from "../components/RecipeCard";
 import { styles } from "../styles";
 import * as SQLite from "expo-sqlite";
@@ -19,9 +19,9 @@ async function initRecipeDatabase(db) {
             mastery INTEGER
         );
     `);
-    console.log("Database created!");
+    console.log("Created recipe database successfully");
   } catch (error) {
-    console.log("Error creating database ", error);
+    console.log("Error creating recipe database ", error);
   }
 }
 
@@ -30,7 +30,7 @@ export default function Recipes() {
     <SQLiteProvider databaseName="kitchen.db" onInit={initRecipeDatabase}>
       <SafeAreaView style={styles.usableArea}>
         <View style={{display: "flex", alignItems: "center",}}>
-            <AddButton />
+            <AddButton link={"../Recipes/RecipePage"}/>
         </View>
         <RecipeCards />
       </SafeAreaView>

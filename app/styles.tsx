@@ -40,10 +40,6 @@ export const styles = StyleSheet.create({
 
   scrollViewStock: {
     flexGrow: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    flexShrink: 0,
     alignItems: "center",
   },
 
@@ -52,7 +48,7 @@ export const styles = StyleSheet.create({
     borderColor: "black",
     borderStyle: "solid",
     borderRadius: 10,
-    width: "40%",
+    width: "45%",
     aspectRatio: "1/1",
     display: "flex",
     alignItems: "center",
@@ -67,6 +63,9 @@ export const styles = StyleSheet.create({
   stockImage: {
     height: "100%",
     width: "100%",
+  },
+  row: {
+    justifyContent: "space-around",
   },
 
   addButton: {
