@@ -1,10 +1,10 @@
-import { Text, View, SafeAreaView, ScrollView, FlatList } from "react-native";
-import StockCard from "../components/StockCard";
-import { styles } from "../styles";
-import * as SQLite from "expo-sqlite";
+import { Text, View, SafeAreaView, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import {SQLiteProvider, useSQLiteContext} from "expo-sqlite";
+import {useIsFocused} from "@react-navigation/native";
 import AddButton from "../components/AddButton";
+import StockCard from "../components/StockCard";
+import { styles } from "../styles";
 
 async function initStockDatabase(db) {
   try {
@@ -27,7 +27,7 @@ export default function stock() {
     <SQLiteProvider databaseName="kitchen.db" onInit={initStockDatabase}>
       <SafeAreaView style={styles.usableArea}>
         <View style={{display: "flex", alignItems: "center",}}>
-            <AddButton link={"../Stock/StockPage"}/>
+            <AddButton link={"../Stock/StockInputPage"}/>
         </View>
         <StockCards />
   
@@ -39,6 +39,7 @@ export default function stock() {
 const StockCards = () => {
   const db = useSQLiteContext();
   const [stock, setStock] = useState([]);
+  const isFocused = useIsFocused();
   
   const getStock = async () =>{
     try{
@@ -48,22 +49,14 @@ const StockCards = () => {
       console.log("Stock did not load", error);
     }
   }
-  const addStock = async (newStock) => {
-    try{
-        const statement = await db.prepareAsync(`INSERT INTO stock (name) VALUES(?)`);
-        await statement.executeAsync([newStock.name]);
-        await getStock();
-    }catch(error){
-        console.log("Error while adding stock", error);
-    }
-  }
+  
   useEffect(()=>{
-    addStock({name: "carrot"});
+    //deleteAllEntries(db, "stock");
     getStock();
-  },[]);
+  },[isFocused]);
   
   return(
-    <View>
+    <>
       {stock.length === 0 ? (<Text>No Stock</Text>) :
       (
       
@@ -78,6 +71,6 @@ const StockCards = () => {
         columnWrapperStyle={styles.row}
       ></FlatList>
       )}
-    </View>
+    </>
   );
 }

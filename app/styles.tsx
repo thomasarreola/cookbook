@@ -40,7 +40,6 @@ export const styles = StyleSheet.create({
 
   scrollViewStock: {
     flexGrow: 1,
-    alignItems: "center",
   },
 
   stockCard: {
@@ -48,11 +47,12 @@ export const styles = StyleSheet.create({
     borderColor: "black",
     borderStyle: "solid",
     borderRadius: 10,
-    width: "45%",
+    width: "40%",
     aspectRatio: "1/1",
     display: "flex",
     alignItems: "center",
     marginTop: "3%",
+    flexShrink: 0,
   },
 
   stockImageContainer: {

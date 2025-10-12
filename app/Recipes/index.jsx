@@ -1,12 +1,11 @@
-import React from "react";
 import { Text, View, SafeAreaView, FlatList } from "react-native";
-import RecipeCard from "../components/RecipeCard";
-import { styles } from "../styles";
-import * as SQLite from "expo-sqlite";
 import { useSQLiteContext, SQLiteProvider } from "expo-sqlite";
 import { useState, useEffect } from "react";
+import { useIsFocused } from '@react-navigation/native';
 import AddButton from "../components/AddButton";
-import { Link } from "expo-router";
+import RecipeCard from "../components/RecipeCard";
+import { styles } from "../styles";
+
 
 async function initRecipeDatabase(db) {
   try {
@@ -30,7 +29,7 @@ export default function Recipes() {
     <SQLiteProvider databaseName="kitchen.db" onInit={initRecipeDatabase}>
       <SafeAreaView style={styles.usableArea}>
         <View style={{display: "flex", alignItems: "center",}}>
-            <AddButton link={"../Recipes/RecipePage"}/>
+            <AddButton link={"../Recipes/RecipeInputPage"}/>
         </View>
         <RecipeCards />
       </SafeAreaView>
@@ -41,12 +40,13 @@ export default function Recipes() {
 const RecipeCards = () => {
     //connects the database
   const db = useSQLiteContext();
+  const isFocused = useIsFocused();
 
   //is used to hold the list of all recipes
   const [recipes, setRecipes] = useState([]);
 
-  //loads in all recipes when program starts one time
   
+  //this reloads the database
   const getRecipes = async () => {
     try {
       const allRecipes = await db.getAllAsync(
@@ -57,28 +57,12 @@ const RecipeCards = () => {
       console.log("Recipes did not load: ", error);
     }
   }
-  const addRecipe = async (newRecipe) => {
-    try{
-        const statement = await db.prepareAsync(`INSERT INTO recipes (name, mastery) VALUES(?,?)`);
-        await statement.executeAsync([newRecipe.name, newRecipe.mastery]);
-        await getRecipes();
-    }catch(error){
-        console.log("Error while adding recipe", error);
-    }
-  }
-
-  const deleteAllRecipes = async () => {
-    try{
-      await db.runAsync(`DELETE FROM recipes`);
-    }catch(error){
-      console.log("Error deleting all recipes", error);
-    }
-  }
   
   useEffect(() => {
-    addRecipe({name: "Sandwich", mastery: 10});
+    //addRecipe({name: "Salad", mastery: 10},db, "recipes");
+    //deleteAllEntries(db, "recipes");
     getRecipes();
-    }, []);
+    }, [isFocused]);
 
   return (
     <View>

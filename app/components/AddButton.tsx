@@ -7,7 +7,6 @@ export default function AddButton(prop: any) {
   const [clicked, setClicked] = useState(0);
 
   if (clicked > 0) {
-    console.log("button was clicked", clicked);
     setClicked(0);
   }
   return (
