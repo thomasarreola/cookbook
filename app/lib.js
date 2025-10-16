@@ -38,4 +38,17 @@ export const deleteAllEntries = async (db, tableName) => {
     }catch(error){
       console.log("Error deleting everything", error);
     }
-  }
+}
+
+export const accessEntry = async (db, tableName, id) => {
+    try{
+        if(!VALID_TABLES.includes(tableName)){
+            console.log("Invalid table name");
+            return;
+        }
+        const entry = await db.getFirstAsync(`SELECT * FROM ${tableName} WHERE id=${id}`);
+        return entry;
+    }catch(error){
+        console.log("Error fetching entry", error);
+    }
+}

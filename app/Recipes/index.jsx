@@ -72,7 +72,7 @@ const RecipeCards = () => {
           contentContainerStyle={styles.scrollViewRecipe}
           data={recipes}
           renderItem={({ item }) => (
-            <RecipeCard name={item.name}/>
+            <RecipeCard name={item.name} id={item.id}/>
           )}
           keyExtractor={(item) => item.id.toString()}
         ></FlatList>
