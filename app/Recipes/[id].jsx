@@ -1,8 +1,9 @@
-import {Text} from "react-native";
+import {Text, Button} from "react-native";
 import {useLocalSearchParams} from "expo-router";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import {useEffect, useState} from "react";
-import {accessEntry} from "../lib";
+import {useRouter} from "expo-router";
+import {accessEntry, removeEntry} from "../lib";
 
 export default function RecipeLoad(){
     return (
@@ -17,12 +18,13 @@ const RecipePage = () => {
     const [item, setItem] = useState(null);
     const db = useSQLiteContext();
     const {id} = useLocalSearchParams();
+    const router = useRouter();
 
     //Needs to run this when page loads in for the first time not when app starts
     useEffect(()=>{
         //am doing an async component so that I can use a promise to make sure the item properly loads
         const loadData = async () =>{
-            setItem(await accessEntry(db, "recipes", id));
+            setItem(await accessEntry(db, "recipe_list", id));
             setIsLoading(false);
         }
             
@@ -33,7 +35,10 @@ const RecipePage = () => {
     //Need to do this because React Native will load the component before it queries it making it blank
     if(!isLoading){
         return(
-            <Text>{item.name}</Text>
+            <>
+                <Text>{item.name}</Text>
+                <Button title="Delete Recipe" onPress={()=>{removeEntry(db, "recipe_list", id); router.back();}}></Button>
+            </>
         );
     }
     

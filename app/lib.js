@@ -1,5 +1,5 @@
 
-const VALID_TABLES = ['recipes', 'stock'];
+const VALID_TABLES = ['recipe_list', 'stock_list', 'ingredient_list'];
 
 //How this works is that it uploads the recipe into the table and then refreshes the current page
 export const addRecipe = async (newRecipe, db, tableName) => {
@@ -50,5 +50,17 @@ export const accessEntry = async (db, tableName, id) => {
         return entry;
     }catch(error){
         console.log("Error fetching entry", error);
+    }
+}
+
+export const removeEntry = async (db, tableName, id) => {
+    try{
+        if(!VALID_TABLES.includes(tableName)){
+            console.log("Invalid table name");
+            return;
+        }
+        await db.runAsync(`DELETE From ${tableName} WHERE id=${id}`);
+    }catch(error){
+        console.log("Error removing entry", error);
     }
 }

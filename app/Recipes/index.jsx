@@ -7,26 +7,9 @@ import RecipeCard from "../components/RecipeCard";
 import { styles } from "../styles";
 
 
-async function initRecipeDatabase(db) {
-  try {
-    await db.execAsync(`    
-        PRAGMA journal_mode = WAL;
-        CREATE TABLE IF NOT EXISTS recipes 
-        (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            mastery INTEGER
-        );
-    `);
-    console.log("Created recipe database successfully");
-  } catch (error) {
-    console.log("Error creating recipe database ", error);
-  }
-}
-
 export default function Recipes() {
   return (
-    <SQLiteProvider databaseName="kitchen.db" onInit={initRecipeDatabase}>
+    <SQLiteProvider databaseName="kitchen.db">
       <SafeAreaView style={styles.usableArea}>
         <View style={{display: "flex", alignItems: "center",}}>
             <AddButton link={"../Recipes/RecipeInputPage"}/>
@@ -50,11 +33,11 @@ const RecipeCards = () => {
   const getRecipes = async () => {
     try {
       const allRecipes = await db.getAllAsync(
-        `SELECT * FROM recipes`
+        `SELECT * FROM recipe_list`
       );
       setRecipes(allRecipes);
     } catch (error) {
-      console.log("Recipes did not load: ", error);
+      console.log("Recipe list did not load: ", error);
     }
   }
   

@@ -1,8 +1,9 @@
-import {Text} from "react-native";
+import {Text, Button} from "react-native";
 import {SQLiteProvider, useSQLiteContext} from "expo-sqlite";
 import {useEffect, useState} from "react";
 import {useLocalSearchParams} from "expo-router";
-import {accessEntry} from "../lib"
+import {useRouter} from "expo-router";
+import {accessEntry, removeEntry} from "../lib"
 
 export default function StockLoad(){
     return(
@@ -17,10 +18,11 @@ const StockPage = () =>{
     const [item, setItem] = useState(null);
     const db = useSQLiteContext();
     const {id} = useLocalSearchParams();
+    const router = useRouter();
 
     useEffect(()=>{
         const loadData = async () =>{
-            setItem(await accessEntry(db, "stock", id));
+            setItem(await accessEntry(db, "stock_list", id));
             setIsLoading(false);
         }
 
@@ -28,6 +30,11 @@ const StockPage = () =>{
     },[db,id]);
 
     if(!isLoading){
-        return(<Text>{item.name}</Text>);
+        return(
+        <>
+            <Text>{item.name}</Text>
+            <Button title="Delete Stock" onPress={()=>{removeEntry(db, "stock_list", id); router.back();}}></Button>
+        </>
+    );
     }
 }

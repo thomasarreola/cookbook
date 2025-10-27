@@ -6,25 +6,10 @@ import AddButton from "../components/AddButton";
 import StockCard from "../components/StockCard";
 import { styles } from "../styles";
 
-async function initStockDatabase(db) {
-  try {
-    await db.execAsync(`    
-        PRAGMA journal_mode = WAL;
-        CREATE TABLE IF NOT EXISTS stock 
-        (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT
-        );
-    `);
-    console.log("Created stock database successfully");
-  } catch (error) {
-    console.log("Error creating stock database ", error);
-  }
-}
 
 export default function stock() {
   return (
-    <SQLiteProvider databaseName="kitchen.db" onInit={initStockDatabase}>
+    <SQLiteProvider databaseName="kitchen.db">
       <SafeAreaView style={styles.usableArea}>
         <View style={{display: "flex", alignItems: "center",}}>
             <AddButton link={"../Stock/StockInputPage"}/>
@@ -43,10 +28,10 @@ const StockCards = () => {
   
   const getStock = async () =>{
     try{
-      const allStock = await db.getAllAsync(`SELECT * FROM stock`);
+      const allStock = await db.getAllAsync(`SELECT * FROM stock_list`);
       setStock(allStock);
     }catch(error){
-      console.log("Stock did not load", error);
+      console.log("Stock list did not load", error);
     }
   }
   

@@ -24,7 +24,7 @@ const StockInputForm = () =>{
             ></TextInput>
             <Button
              title="Add Stock"
-             onPress={()=>{addStock({name: name}, db, "stock"); router.back();}}
+             onPress={()=>{addStock({name: name}, db, "stock_list"); router.back();}}
             ></Button>
         </SafeAreaView>
     );

@@ -5,6 +5,11 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     flex: 1,
   },
+  usableAreaCenter: {
+    backgroundColor: "white",
+    flex: 1,
+    alignItems: "center",
+  },
   scrollViewRecipe: {
     flexGrow: 1,
     alignItems: "center",
@@ -88,4 +93,33 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     zIndex: 100,
   },
+
+  recipeGeneratorView: {
+    width: "90%",
+    aspectRatio: "4/1",
+    borderColor: "black",
+    borderStyle: "solid",
+    borderWidth: 5,
+    borderRadius: 10,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  recipeGeneratorText: {
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+  textInputRecipePage: {
+    borderColor: "black",
+    borderStyle: "solid",
+    borderWidth: 1,
+    width: "80%",
+    aspectRatio: "12/1",
+    borderRadius: 1,
+  },
+  textRecipePage: {
+    fontSize: 16,
+  },
+  addRecipeButtonRecipePage: {},
 });
