@@ -1,4 +1,4 @@
-import {Text, TextInput, View, Button, SafeAreaView} from "react-native";
+import {Text, TextInput, Button, SafeAreaView} from "react-native";
 import { SQLiteProvider , useSQLiteContext} from "expo-sqlite";
 import {useState} from "react";
 import {useRouter} from "expo-router";

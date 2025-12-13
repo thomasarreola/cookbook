@@ -5,10 +5,11 @@ const VALID_TABLES = ['recipe_list', 'stock_list', 'ingredient_list'];
 export const addRecipe = async (db,newRecipe) => {
     try{
         const statement = await db.prepareAsync(`INSERT INTO recipe_list (name, mastery) VALUES(?,?)`);
-        const result = await statement.executeAsync([newRecipe.name, newRecipe.mastery]);
-        const recipeId = result.lastInsertRowId;
+        const recipeResult = await statement.executeAsync([newRecipe.name, newRecipe.mastery]);
+        const recipeId = recipeResult.lastInsertRowId;
         for(let i = 0; i < newRecipe.ingredients.length; i++){
-            await addStock(db, {name: newRecipe.ingredients[i][0], quantity: 0});
+            const stockId = await addStock(db, {name: newRecipe.ingredients[i][0], quantity: 0});
+            await addIngredient(db, {quantity: newRecipe.ingredients[i][1], recipe_id: recipeId, stock_id: stockId})
         }
         return recipeId;
     }catch(error){
@@ -47,39 +48,15 @@ export const checkStock = async(db, newStock) =>{
     }
 }
 
+//adds that a recipe has an ingredient to a list
 export const addIngredient = async (db, newIngredient) => {
     try{
-        const statement = await db.prepareAsync(`INSERT INTO ingredient_list (name)`)
+        const statement = await db.prepareAsync(`INSERT INTO ingredient_list (quantity, recipe_id, stock_id) VALUES (?,?,?)`)
+        const result = await statement.executeAsync([newIngredient.quantity, newIngredient.recipe_id, newIngredient.stock_id])
     }catch(error){
         console.log("Error while adding ingredient", error);
     }
 }
-
-/*
-1. Adds recipe to the recipe_list table
-2. Retrieves recipe_id
-3. Checks if each ingredient has an entry in the stock_list table and if it doesn't creates one with quanity of 0
-3. Retrieves stock_id
-4. Creates entry each of each ingredient in the list with connecting stock_id and recipe_id
-
-export const integrateRecipe = async (db, newRecipe) =>{
-    try{
-        const recipe_id = addRecipe(db, newRecipe);
-        //loops through the list of ingredients checking if each type of ingredient has an entry in stock_list
-        for(let i = 0; i < newRecipe.ingredients.length; i++){
-            let stock_id = await db.getFirstAsync(`SELECT stock_id FROM stock_list WHERE name=${newRecipe.ingredients[i]}`);
-            if(!stock_id){
-                stock_id = addStock(db, {name: newRecipe.ingredients[i], quantity: "0"});
-            }
-
-        }
-
-        return check;
-    }catch(error){
-        console.log("Error while checking entry", error);
-    }
-}
-*/
 
 export const wipeTable = async (db, tableName) => {
     try{

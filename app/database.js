@@ -8,6 +8,7 @@ export async function initDatabase(db){
   try{
     //ALTER TABLE stock_list ADD COLUMN quantity TEXT;
     //ALTER TABLE recipe_list RENAME recipe_id TO id;
+    //DROP TABLE IF EXISTS ingredient_list;
     await db.execAsync(`
       
     `);
@@ -49,10 +50,15 @@ export async function initDatabase(db){
     try {
       await db.execAsync(`    
           PRAGMA journal_mode = WAL;
+          PRAGMA foreign_keys = ON;
           CREATE TABLE IF NOT EXISTS ingredient_list 
           (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
-              name TEXT
+              quantity TEXT,
+              recipe_id INTEGER,
+              stock_id INTEGER,
+              FOREIGN KEY (recipe_id) REFERENCES recipe_list(id) ON DELETE CASCADE,
+              FOREIGN KEY (stock_id) REFERENCES stock_list(id) ON DELETE CASCADE
           );
       `);
       console.log("Created ingredient list successfully");
