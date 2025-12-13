@@ -1,10 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  //This is used to set SafeAreaView to something something neutral and maliable
   usableArea: {
     backgroundColor: "white",
     flex: 1,
   },
+
+  //Kind of the same thing as above but except will center everything by default
   usableAreaCenter: {
     backgroundColor: "white",
     flex: 1,
@@ -116,6 +119,14 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     width: "80%",
     aspectRatio: "12/1",
+    borderRadius: 1,
+  },
+  quantityInputRecipePage: {
+    borderColor: "black",
+    borderStyle: "solid",
+    borderWidth: 1,
+    width: "6.67%",
+    aspectRatio: "1/1",
     borderRadius: 1,
   },
   textRecipePage: {

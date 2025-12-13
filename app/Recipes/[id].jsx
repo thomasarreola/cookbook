@@ -3,7 +3,7 @@ import {useLocalSearchParams} from "expo-router";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import {useEffect, useState} from "react";
 import {useRouter} from "expo-router";
-import {accessEntry, removeEntry} from "../lib";
+import {accessEntryBy, removeEntry} from "../lib";
 
 export default function RecipeLoad(){
     return (
@@ -24,7 +24,7 @@ const RecipePage = () => {
     useEffect(()=>{
         //am doing an async component so that I can use a promise to make sure the item properly loads
         const loadData = async () =>{
-            setItem(await accessEntry(db, "recipe_list", id));
+            setItem(await accessEntryBy(db, "recipe_list", id));
             setIsLoading(false);
         }
             

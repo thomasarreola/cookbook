@@ -49,7 +49,7 @@ const StockCards = () => {
       contentContainerStyle={styles.scrollViewStock}
         data={stock}
         renderItem={({item})=>(
-          <StockCard name={item.name} id={item.id} />
+          <StockCard name={item.name} id={item.id} quantity={item.quantity} />
         )}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}

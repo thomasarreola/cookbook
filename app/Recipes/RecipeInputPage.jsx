@@ -3,7 +3,7 @@ import {useSQLiteContext, SQLiteProvider} from "expo-sqlite";
 import {useRouter} from "expo-router";
 import {styles} from "../styles";
 import {useState, useEffect} from "react";
-import {addRecipe} from "../lib"
+import {addRecipe, integrateRecipe} from "../lib"
 
 export default function RecipeInputPage(){
     return(
@@ -24,13 +24,16 @@ const RecipeInputForm = () =>{
     const [ingredients, setIngredients] = useState([]);
     //this holds the current ingredient that is inputted in textinput
     const [currentIngredient, setCurrentIngredient] = useState('');
+    //this holds the quantity of the current ingredient
+    const [ingredientQuantity, setIngredientQuantity] = useState(0);
+
     const router = useRouter();
     const db = useSQLiteContext();
     
     const ingredientList = ingredients.toString();
 
     const setIArray = () =>{
-        setIngredients([...ingredients, currentIngredient]);
+        setIngredients([...ingredients, [currentIngredient,ingredientQuantity]]);
         setCurrentIngredient('');
     }
     return(
@@ -55,6 +58,12 @@ const RecipeInputForm = () =>{
                 value={currentIngredient}
                 autoCorrect={false}
                 ></TextInput>
+                <TextInput
+                style={styles.quantityInputRecipePage}
+                onChangeText={(m)=>setIngredientQuantity(m)}
+                value={ingredientQuantity}
+                autoCorrect={false}
+                ></TextInput>
                 <Pressable
                 onPress={setIArray}
                 >
@@ -66,9 +75,10 @@ const RecipeInputForm = () =>{
             <Text>{ingredientList}</Text>
             <Button
             title={"Add Recipe"}
-            onPress={()=>{addRecipe({name: name, mastery: mastery},db, "recipe_list"); router.back();}}    
+            onPress={()=>{addRecipe(db,{name: name, mastery: mastery, ingredients: ingredients}); router.back();}}    
             style={styles.addRecipeButtonRecipePage} 
             ></Button>
+            
         </>
     );
 }

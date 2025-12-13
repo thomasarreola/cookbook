@@ -11,7 +11,9 @@ export default function StockCard(props: any) {
           <View style={styles.stockImageContainer}>
             <Image source={stockImage} style={styles.stockImage} />
           </View>
-          <Text>{props.name}</Text>
+          <Text>
+            {props.name} {props.quantity}
+          </Text>
         </View>
       </Pressable>
     </Link>

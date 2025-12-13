@@ -29,7 +29,7 @@ const RecipeCards = () => {
   const [recipes, setRecipes] = useState([]);
 
   
-  //this reloads the database
+  //this gets all entries from recipe_list and puts it into an array, did not add it to lib because very limited usecase for this one
   const getRecipes = async () => {
     try {
       const allRecipes = await db.getAllAsync(
