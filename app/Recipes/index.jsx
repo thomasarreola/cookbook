@@ -57,7 +57,7 @@ const RecipeCards = () => {
           renderItem={({ item }) => (
             <RecipeCard name={item.name} id={item.id}/>
           )}
-          keyExtractor={(item) => item.id.toString()}
+          //keyExtractor={(item) => item.id.toString()}
         ></FlatList>
         )}
     </View>

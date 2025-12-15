@@ -9,9 +9,11 @@ export async function initDatabase(db){
     //ALTER TABLE stock_list ADD COLUMN quantity TEXT;
     //ALTER TABLE recipe_list RENAME recipe_id TO id;
     //DROP TABLE IF EXISTS ingredient_list;
-    await db.execAsync(`
-      
-    `);
+    /*await db.execAsync(`
+      DROP TABLE IF EXISTS ingredient_list;
+      DROP TABLE IF EXISTS recipe_list;
+      DROP TABLE IF EXISTS stock_list;
+    `);*/
   }catch(error){
     console.log("Error altering table", error);
   }
@@ -21,7 +23,7 @@ export async function initDatabase(db){
             PRAGMA journal_mode = WAL;
             CREATE TABLE IF NOT EXISTS recipe_list 
             (
-                recipe_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT,
                 mastery INTEGER
             );
@@ -38,8 +40,8 @@ export async function initDatabase(db){
         CREATE TABLE IF NOT EXISTS stock_list 
         (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT
-            quantity TEXT
+            name TEXT,
+            quantity INTEGER
         );
       `);
       console.log("Created stock list successfully");
@@ -54,7 +56,7 @@ export async function initDatabase(db){
           CREATE TABLE IF NOT EXISTS ingredient_list 
           (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
-              quantity TEXT,
+              quantity INTEGER,
               recipe_id INTEGER,
               stock_id INTEGER,
               FOREIGN KEY (recipe_id) REFERENCES recipe_list(id) ON DELETE CASCADE,

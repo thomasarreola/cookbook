@@ -58,6 +58,24 @@ export const addIngredient = async (db, newIngredient) => {
     }
 }
 
+//returns a list of recipes that can be made based on what we have in our stock
+export const generateRecipeList = async(db) =>{
+    try{
+        const allResults = await db.getAllAsync(`
+            SELECT recipe_list.*
+            FROM recipe_list
+            INNER JOIN ingredient_list ON recipe_list.id = ingredient_list.recipe_id
+            INNER JOIN stock_list ON ingredient_list.stock_id = stock_list.id
+            GROUP By recipe_list.id
+            HAVING MIN(CAST(stock_list.quantity AS INTEGER) >= CAST(ingredient_list.quantity AS INTEGER)) = 1;
+            `);
+            return allResults;
+    }catch(error){
+        console.log("Error while generating recipe", error);
+        return [];
+    }
+}
+
 export const wipeTable = async (db, tableName) => {
     try{
         if(!VALID_TABLES.includes(tableName)){
