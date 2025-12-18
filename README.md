@@ -1,1 +1,1 @@
-27.5 hours spent on this project
+40 hours spent on this project

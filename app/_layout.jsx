@@ -11,7 +11,7 @@ export default function TabLayout() {
     <Tabs screenOptions={{headerShown: false}}>
       <Tabs.Screen name="Recipes" />
       <Tabs.Screen name="Planner" />
-      <Tabs.Screen name="Stock" />
+      <Tabs.Screen name="Pantry" />
       <Tabs.Screen name="index"  options={{href: null}}/>
       <Tabs.Screen name="components"  options={{href: null}}/>
     </Tabs>
