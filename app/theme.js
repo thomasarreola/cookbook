@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
 
 export const Colors = {
-    background: 'F8F5F2',
-    bars: 'FFFFFF',
-    textPrimary: '4A3728',
-    textSecondary: '000000',
-    importantButton: '3C2218'
+    background: '#F8F5F2',
+    bars: '#FFFFFF',
+    textPrimary: '#4A3728',
+    textSecondary: '#000000',
+    importantIcon: '#3C2218',
+    lesserIcon: '#7D8491'
 };
 
 export const TextSize = {
