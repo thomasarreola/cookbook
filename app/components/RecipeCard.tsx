@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, Image, Pressable } from "react-native";
 import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
+import { TimeIcon } from "tdesign-icons-react-native";
 import { Colors, TextSize } from "../theme";
 const foodImage = require("../../assets/images/foodP.png");
 
@@ -20,11 +21,10 @@ export default function RecipeCard(props: any) {
     <Link key={props.id} href={`../Recipes/${props.id}`} push asChild>
       <Pressable>
         <View style={styles.recipeCardOuterView}>
-          <Image source={foodImage} style={styles.recipeCardImage} />
           <View style={styles.recipeCardInformation}>
             <Text style={styles.recipeCardRecipeTitle}>{props.name}</Text>
             <View>
-              <Image></Image>
+              <TimeIcon />
               <Text></Text>
             </View>
             <View>
@@ -41,24 +41,18 @@ export default function RecipeCard(props: any) {
 const styles = StyleSheet.create({
   recipeCardOuterView: {
     width: 365,
-    height: 335,
+    height: 100,
     backgroundColor: Colors.bars,
-    borderTopLeftRadius: 21,
-    borderTopRightRadius: 21,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
+    borderRadius: 5,
     boxShadow: "0px 4px 4px 0 rgba(0,0,0,0.25)",
     marginBottom: 10,
     marginTop: 5,
     alignItems: "center",
   },
-  recipeCardImage: {
-    height: "60%",
-    aspectRatio: "1/1",
-  },
   recipeCardInformation: {
     width: "100%",
-    height: "30%",
+    height: "100%",
+    alignItems: "center",
   },
   recipeCardRecipeTitle: {
     fontFamily: "AveriaSerifLibre_400Regular",
