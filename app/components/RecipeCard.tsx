@@ -7,7 +7,7 @@ const foodImage = require("../../assets/images/foodP.png");
 
 export default function RecipeCard(props: any) {
   return (
-    <Link key={props.id} href={`../Recipes/${props.id}`} push asChild>
+    /*<Link key={props.id} href={`../Recipes/${props.id}`} push asChild>
       <Pressable>
         <View style={styles.recipeCard}>
           <View style={styles.recipeImageContainer}>
@@ -16,11 +16,60 @@ export default function RecipeCard(props: any) {
           <Text style={styles.recipeNameText}>{props.name}</Text>
         </View>
       </Pressable>
+    </Link>*/
+    <Link key={props.id} href={`../Recipes/${props.id}`} push asChild>
+      <Pressable>
+        <View style={styles.recipeCardOuterView}>
+          <Image source={foodImage} style={styles.recipeCardImage} />
+          <View style={styles.recipeCardInformation}>
+            <Text style={styles.recipeCardRecipeTitle}>{props.name}</Text>
+            <View>
+              <Image></Image>
+              <Text></Text>
+            </View>
+            <View>
+              <Image></Image>
+              <Text></Text>
+            </View>
+          </View>
+        </View>
+      </Pressable>
     </Link>
   );
 }
 
 const styles = StyleSheet.create({
+  recipeCardOuterView: {
+    width: 365,
+    height: 335,
+    backgroundColor: Colors.bars,
+    borderTopLeftRadius: 21,
+    borderTopRightRadius: 21,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    boxShadow: "0px 4px 4px 0 rgba(0,0,0,0.25)",
+    marginBottom: 10,
+    marginTop: 5,
+    alignItems: "center",
+  },
+  recipeCardImage: {
+    height: "60%",
+    aspectRatio: "1/1",
+  },
+  recipeCardInformation: {
+    width: "100%",
+    height: "30%",
+  },
+  recipeCardRecipeTitle: {
+    fontFamily: "AveriaSerifLibre_400Regular",
+    fontSize: TextSize.large,
+    color: Colors.important,
+    marginTop: 20,
+    marginLeft: 20,
+  },
+});
+
+/*const styles = StyleSheet.create({
   recipeCard: {
     borderWidth: 5,
     borderColor: "black",
@@ -45,4 +94,4 @@ const styles = StyleSheet.create({
   recipeNameText: {
     fontSize: 30,
   },
-});
+});*/

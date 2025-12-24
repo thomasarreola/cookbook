@@ -5,8 +5,8 @@ export const Colors = {
     bars: '#FFFFFF',
     textPrimary: '#4A3728',
     textSecondary: '#000000',
-    importantIcon: '#3C2218',
-    lesserIcon: '#7D8491'
+    important: '#3C2218',
+    lesser: '#7D8491'
 };
 
 export const TextSize = {
