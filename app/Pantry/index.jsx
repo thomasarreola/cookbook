@@ -1,23 +1,27 @@
-import { Text, View, SafeAreaView, FlatList } from "react-native";
+import { useIsFocused } from "@react-navigation/native";
+import { Stack } from "expo-router";
+import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import { useEffect, useState } from "react";
-import {SQLiteProvider, useSQLiteContext} from "expo-sqlite";
-import {useIsFocused} from "@react-navigation/native";
+import { FlatList, SafeAreaView, StyleSheet, Text } from "react-native";
 import AddButton from "../components/AddButton";
 import StockCard from "../components/StockCard";
-import { styles } from "../styles";
-
+import { Colors } from "../theme";
 
 export default function stock() {
   return (
-    <SQLiteProvider databaseName="kitchen.db">
-      <SafeAreaView style={styles.usableArea}>
-        <View style={{display: "flex", alignItems: "center",}}>
-            <AddButton link={"../Stock/StockInputPage"}/>
-        </View>
-        <StockCards />
-  
-      </SafeAreaView>
-    </SQLiteProvider>
+    <>
+      <Stack.Screen options={{ title: "Pantry" }} />
+      <SQLiteProvider databaseName="kitchen.db">
+        <SafeAreaView style={styles.usableArea}>
+          <StockCards />
+          <AddButton
+            link={"../Pantry/StockInputPage"}
+            text={"Add Item"}
+            width={"45%"}
+          />
+        </SafeAreaView>
+      </SQLiteProvider>
+    </>
   );
 }
 
@@ -25,37 +29,50 @@ const StockCards = () => {
   const db = useSQLiteContext();
   const [stock, setStock] = useState([]);
   const isFocused = useIsFocused();
-  
-  const getStock = async () =>{
-    try{
+
+  const getStock = async () => {
+    try {
       const allStock = await db.getAllAsync(`SELECT * FROM stock_list`);
       setStock(allStock);
-    }catch(error){
+    } catch (error) {
       console.log("Stock list did not load", error);
     }
-  }
-  
-  useEffect(()=>{
+  };
+
+  useEffect(() => {
     //deleteAllEntries(db, "stock");
     getStock();
-  },[isFocused]);
-  
-  return(
+  }, [isFocused]);
+
+  return (
     <>
-      {stock.length === 0 ? (<Text>No Stock</Text>) :
-      (
-      
-      <FlatList
-      contentContainerStyle={styles.scrollViewStock}
-        data={stock}
-        renderItem={({item})=>(
-          <StockCard name={item.name} id={item.id} quantity={item.quantity} />
-        )}
-        keyExtractor={(item) => item.id.toString()}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-      ></FlatList>
+      {stock.length === 0 ? (
+        <Text>No Stock</Text>
+      ) : (
+        <FlatList
+          contentContainerStyle={styles.scrollViewStock}
+          data={stock}
+          renderItem={({ item }) => (
+            <StockCard name={item.name} id={item.id} quantity={item.quantity} />
+          )}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+          columnWrapperStyle={styles.row}
+        ></FlatList>
       )}
     </>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  usableArea: {
+    backgroundColor: Colors.background,
+    flex: 1,
+  },
+  scrollViewStock: {
+    flexGrow: 1,
+  },
+  row: {
+    justifyContent: "space-around",
+  },
+});

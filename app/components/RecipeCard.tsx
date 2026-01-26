@@ -1,8 +1,7 @@
-import React from "react";
-import { Text, View, Image, Pressable } from "react-native";
 import { Link } from "expo-router";
-import { StyleSheet } from "react-native";
-import { TimeIcon } from "tdesign-icons-react-native";
+import React from "react";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { StarIcon } from "tdesign-icons-react-native";
 import { Colors, TextSize } from "../theme";
 const foodImage = require("../../assets/images/foodP.png");
 
@@ -24,8 +23,10 @@ export default function RecipeCard(props: any) {
           <View style={styles.recipeCardInformation}>
             <Text style={styles.recipeCardRecipeTitle}>{props.name}</Text>
             <View>
-              <TimeIcon />
-              <Text></Text>
+              <Text>{props.time} minutes</Text>
+            </View>
+            <View style={styles.recipeCardMasteryView}>
+              <Text>{props.mastery} stars</Text>
             </View>
             <View>
               <Image></Image>
@@ -37,6 +38,18 @@ export default function RecipeCard(props: any) {
     </Link>
   );
 }
+
+const MasteryDisplay = (props: any) => {
+  const count = Math.floor(Number(props.mastery) || 0);
+  //console.log(props.mastery);
+  return (
+    <>
+      {[...Array(count)].map((_, index) => (
+        <StarIcon key={index} />
+      ))}
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   recipeCardOuterView: {
@@ -61,31 +74,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
   },
-});
-
-/*const styles = StyleSheet.create({
-  recipeCard: {
-    borderWidth: 5,
-    borderColor: "black",
-    borderStyle: "solid",
-    borderRadius: 10,
-    width: "90%",
-    aspectRatio: "4/1",
-    margin: "3%",
-    display: "flex",
+  recipeCardMasteryView: {
     flexDirection: "row",
-    alignItems: "center",
   },
-  recipeImageContainer: {
-    width: "20%",
-    aspectRatio: "1/1",
-    margin: "2%",
-  },
-  recipeImage: {
-    height: "100%",
-    width: "100%",
-  },
-  recipeNameText: {
-    fontSize: 30,
-  },
-});*/
+});
