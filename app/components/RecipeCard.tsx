@@ -52,16 +52,16 @@ const MasteryDisplay = (props: any) => {
         <StarFilledIcon
           key={index}
           color={Colors.important}
-          height={TextSize.normal}
-          width={TextSize.normal}
+          height={TextSize.medium}
+          width={TextSize.medium}
         />
       ))}
       {[...Array(5 - count)].map((_, index) => (
         <StarIcon
           key={index}
           color={Colors.important}
-          height={TextSize.normal}
-          width={TextSize.normal}
+          height={TextSize.medium}
+          width={TextSize.medium}
         />
       ))}
     </>
@@ -78,11 +78,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 5,
     alignItems: "center",
+    justifyContent: "center",
   },
   recipeCardInformation: {
     width: "100%",
     height: "100%",
     alignItems: "center",
+    justifyContent: "center",
   },
   recipeCardRecipeTitle: {
     fontFamily: "AveriaSerifLibre_400Regular",

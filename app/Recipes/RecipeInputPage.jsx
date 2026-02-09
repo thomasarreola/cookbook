@@ -106,8 +106,8 @@ const RecipeInputForm = () => {
       <Text>{ingredientList}</Text>
       <Button
         title={"Add Recipe"}
-        onPress={() => {
-          addRecipe(db, {
+        onPress={async () => {
+          await addRecipe(db, {
             name: name,
             mastery: mastery,
             ingredients: ingredients,
