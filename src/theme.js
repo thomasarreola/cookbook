@@ -12,5 +12,6 @@ export const TextSize = {
   normal: 12,
   medium: 16,
   large: 20,
+  Large: 25,
   xlarge: 35,
 };
