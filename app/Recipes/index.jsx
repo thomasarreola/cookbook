@@ -2,7 +2,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text } from "react-native";
 import { Colors } from "../../src/theme";
 import AddButton from "../components/AddButton";
 import RecipeCard from "../components/RecipeCard";
@@ -53,7 +53,7 @@ const RecipeCards = () => {
   }, [isFocused]);
 
   return (
-    <View>
+    <>
       {recipes.length === 0 ? (
         <Text>No Recipes</Text>
       ) : (
@@ -69,10 +69,10 @@ const RecipeCards = () => {
               mastery={item.mastery}
             />
           )}
-          //keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.id.toString()}
         ></FlatList>
       )}
-    </View>
+    </>
   );
 };
 
