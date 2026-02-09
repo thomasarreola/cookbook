@@ -1,7 +1,7 @@
 import { Link } from "expo-router";
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { StarIcon } from "tdesign-icons-react-native";
+import { StarFilledIcon, StarIcon, TimeIcon } from "tdesign-icons-react-native";
 import { Colors, TextSize } from "../../src/theme";
 const foodImage = require("../../assets/images/foodP.png");
 
@@ -22,11 +22,16 @@ export default function RecipeCard(props: any) {
         <View style={styles.recipeCardOuterView}>
           <View style={styles.recipeCardInformation}>
             <Text style={styles.recipeCardRecipeTitle}>{props.name}</Text>
-            <View>
+            <View style={styles.recipeCardTimeView}>
+              <TimeIcon
+                width={TextSize.normal}
+                height={TextSize.normal}
+                color={Colors.important}
+              />
               <Text>{props.time} minutes</Text>
             </View>
             <View style={styles.recipeCardMasteryView}>
-              <Text>{props.mastery} stars</Text>
+              <MasteryDisplay mastery={props.mastery} />
             </View>
             <View>
               <Image></Image>
@@ -41,11 +46,23 @@ export default function RecipeCard(props: any) {
 
 const MasteryDisplay = (props: any) => {
   const count = Math.floor(Number(props.mastery) || 0);
-  //console.log(props.mastery);
   return (
     <>
       {[...Array(count)].map((_, index) => (
-        <StarIcon key={index} />
+        <StarFilledIcon
+          key={index}
+          color={Colors.important}
+          height={TextSize.normal}
+          width={TextSize.normal}
+        />
+      ))}
+      {[...Array(5 - count)].map((_, index) => (
+        <StarIcon
+          key={index}
+          color={Colors.important}
+          height={TextSize.normal}
+          width={TextSize.normal}
+        />
       ))}
     </>
   );
@@ -76,5 +93,12 @@ const styles = StyleSheet.create({
   },
   recipeCardMasteryView: {
     flexDirection: "row",
+  },
+  recipeCardTimeView: {
+    flexDirection: "row",
+    alignItems: "center",
+    fontSize: TextSize.normal,
+    color: Colors.important,
+    gap: 2,
   },
 });
