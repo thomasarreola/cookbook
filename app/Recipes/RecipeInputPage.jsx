@@ -25,8 +25,8 @@ export default function RecipeInputPage() {
 const RecipeInputForm = () => {
   //this holds recipe name value to be put into database
   const [name, setName] = useState("");
-  //this holds mastery recipe value to be put into database
-  const [mastery, setMastery] = useState(0);
+  //this holds rating recipe value to be put into database
+  const [rating, setRating] = useState(0);
   //this holds the time recipe value to be put into the database, its in minutes
   const [time, setTime] = useState(0);
   //this holds the string of ingredients that we have already added to display to user
@@ -65,10 +65,10 @@ const RecipeInputForm = () => {
         style={styles.textInputRecipePage}
         autoCorrect={false}
       ></TextInput>
-      <Text style={styles.textRecipePage}>Mastery:</Text>
+      <Text style={styles.textRecipePage}>Rating:</Text>
       <TextInput
         onChangeText={(m) => {
-          setMastery(Number(m));
+          setRating(Number(m));
         }}
         style={styles.textInputRecipePage}
         autoCorrect={false}
@@ -109,7 +109,7 @@ const RecipeInputForm = () => {
         onPress={async () => {
           await addRecipe(db, {
             name: name,
-            mastery: mastery,
+            rating: rating,
             ingredients: ingredients,
             time: time,
           });

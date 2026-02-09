@@ -1,9 +1,9 @@
 import { useIsFocused } from "@react-navigation/native";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, Text, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { generateRecipeList } from "../../src/lib";
-import { styles } from "../../src/styles";
+import { Colors } from "../../src/theme";
 import RecipeCard from "../components/RecipeCard";
 export default function RecipeGenerator() {
   return (
@@ -36,13 +36,13 @@ const RecipeList = () => {
         <Text>No Recipes</Text>
       ) : (
         <FlatList
-          contentContainerStyle={styles.scrollViewRecipe}
+          contentContainerStyle={styles.scrollView}
           data={recipes}
           renderItem={({ item }) => (
             <RecipeCard
               name={item.name}
               id={item.id}
-              mastery={item.mastery}
+              rating={item.rating}
               time={item.time}
             />
           )}
@@ -52,3 +52,14 @@ const RecipeList = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  scrollView: {
+    flexGrow: 1,
+    alignItems: "center",
+  },
+  usableArea: {
+    backgroundColor: Colors.background,
+    flex: 1,
+  },
+});

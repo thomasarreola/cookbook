@@ -30,8 +30,8 @@ export default function RecipeCard(props: any) {
               />
               <Text>{props.time} minutes</Text>
             </View>
-            <View style={styles.recipeCardMasteryView}>
-              <MasteryDisplay mastery={props.mastery} />
+            <View style={styles.recipeCardRatingView}>
+              <RatingDisplay rating={props.rating} />
             </View>
             <View>
               <Image></Image>
@@ -44,8 +44,8 @@ export default function RecipeCard(props: any) {
   );
 }
 
-const MasteryDisplay = (props: any) => {
-  const count = Math.floor(Number(props.mastery) || 0);
+const RatingDisplay = (props: any) => {
+  const count = Math.floor(Number(props.rating) || 0);
   return (
     <>
       {[...Array(count)].map((_, index) => (
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
   },
-  recipeCardMasteryView: {
+  recipeCardRatingView: {
     flexDirection: "row",
   },
   recipeCardTimeView: {

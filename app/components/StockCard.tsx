@@ -12,7 +12,8 @@ export default function StockCard(props: any) {
             <Image source={stockImage} style={styles.stockCardImage} />
           </View>
           <Text style={styles.stockCardText}>
-            {props.name}: {props.quantity} grams
+            {props.quantity} {props.name}
+            {props.quantity > 1 ? "s" : ""}
           </Text>
         </View>
       </Pressable>

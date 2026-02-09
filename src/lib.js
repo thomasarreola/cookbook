@@ -4,11 +4,11 @@ const VALID_TABLES = ["recipe_list", "stock_list", "ingredient_list"];
 export const addRecipe = async (db, newRecipe) => {
   try {
     const statement = await db.prepareAsync(
-      `INSERT INTO recipe_list (name, mastery, time) VALUES(?,?,?)`,
+      `INSERT INTO recipe_list (name, rating, time) VALUES(?,?,?)`,
     );
     const recipeResult = await statement.executeAsync([
       newRecipe.name,
-      Number(newRecipe.mastery),
+      Number(newRecipe.rating),
       newRecipe.time,
     ]);
     const recipeId = recipeResult.lastInsertRowId;

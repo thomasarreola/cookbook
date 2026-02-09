@@ -26,7 +26,7 @@ export async function initDatabase(db) {
             (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT,
-                mastery INTEGER,
+                rating INTEGER,
                 time TEXT
             );
         `);

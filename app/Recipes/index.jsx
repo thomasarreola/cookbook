@@ -47,7 +47,7 @@ const RecipeCards = () => {
   };
 
   useEffect(() => {
-    //addRecipe({name: "Salad", mastery: 10},db, "recipes");
+    //addRecipe({name: "Salad", rating: 10},db, "recipes");
     //deleteAllEntries(db, "recipes");
     getRecipes();
   }, [isFocused]);
@@ -66,7 +66,7 @@ const RecipeCards = () => {
               name={item.name}
               id={item.id}
               time={item.time}
-              mastery={item.mastery}
+              rating={item.rating}
             />
           )}
           keyExtractor={(item) => item.id.toString()}
