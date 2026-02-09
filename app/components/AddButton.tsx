@@ -1,7 +1,7 @@
 import { Link } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Colors, TextSize } from "../theme";
+import { Colors, TextSize } from "../../src/theme";
 
 export default function AddButton(prop: any) {
   const [clicked, setClicked] = useState(0);

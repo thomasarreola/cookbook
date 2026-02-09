@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { Colors } from "../theme";
+import { Colors } from "../../src/theme";
 const stockImage = require("../../assets/images/foodP.png");
 
 export default function StockCard(props: any) {

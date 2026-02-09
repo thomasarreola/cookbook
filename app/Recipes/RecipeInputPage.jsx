@@ -2,15 +2,15 @@ import { useRouter } from "expo-router";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import { useState } from "react";
 import {
-    Button,
-    Pressable,
-    SafeAreaView,
-    Text,
-    TextInput,
-    View,
+  Button,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
-import { addRecipe } from "../lib";
-import { styles } from "../styles";
+import { addRecipe } from "../../src/lib";
+import { styles } from "../../src/styles";
 
 export default function RecipeInputPage() {
   return (

@@ -2,7 +2,7 @@ import { Link } from "expo-router";
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { StarIcon } from "tdesign-icons-react-native";
-import { Colors, TextSize } from "../theme";
+import { Colors, TextSize } from "../../src/theme";
 const foodImage = require("../../assets/images/foodP.png");
 
 export default function RecipeCard(props: any) {

@@ -2,9 +2,9 @@ import { useIsFocused } from "@react-navigation/native";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import { useEffect, useState } from "react";
 import { FlatList, SafeAreaView, Text, View } from "react-native";
+import { generateRecipeList } from "../../src/lib";
+import { styles } from "../../src/styles";
 import RecipeCard from "../components/RecipeCard";
-import { generateRecipeList } from "../lib";
-import { styles } from "../styles";
 export default function RecipeGenerator() {
   return (
     <SQLiteProvider databaseName="kitchen.db">

@@ -3,9 +3,9 @@ import { Stack } from "expo-router";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import { useEffect, useState } from "react";
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Colors } from "../../src/theme";
 import AddButton from "../components/AddButton";
 import RecipeCard from "../components/RecipeCard";
-import { Colors } from "../theme";
 //import { styles } from "../styles";
 
 /*<View style={{display: "flex", alignItems: "center",}}>

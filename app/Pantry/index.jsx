@@ -3,9 +3,9 @@ import { Stack } from "expo-router";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import { useEffect, useState } from "react";
 import { FlatList, SafeAreaView, StyleSheet, Text } from "react-native";
+import { Colors } from "../../src/theme";
 import AddButton from "../components/AddButton";
 import StockCard from "../components/StockCard";
-import { Colors } from "../theme";
 
 export default function stock() {
   return (

@@ -1,6 +1,6 @@
 import { Link, Stack, useRouter } from "expo-router";
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { Colors, TextSize } from "../theme";
+import { Colors, TextSize } from "../../src/theme";
 
 export default function Planner() {
   return <ButtonList />;
